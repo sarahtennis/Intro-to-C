@@ -27,10 +27,20 @@ void string_copy(char *x, char *y)
 
     Do not use the `strchr` function from the standard library.
 */
-// char *find_char(char *str, int c)
-// {
-//     return 0;
-// }
+char *find_char(char *str, int c)
+{
+    int i;
+
+    for (i = 0; str[i]; i++)
+    {
+        if (str[i] == c)
+        {
+            return &str[i];
+        }
+    }
+
+    return NULL;
+}
 
 /*
     Searches the input string `haystack` for the first instance of
@@ -40,10 +50,44 @@ void string_copy(char *x, char *y)
 
     Do not use the `strstr` function from the standard library.
 */
-// char *find_string(char *haystack, char *needle)
-// {
-//     return 0;
-// }
+char *find_string(char *haystack, char *needle)
+{
+    int i;
+    int hay_len = strlen(haystack);
+    int needle_len = strlen(needle);
+
+    if (needle_len > hay_len)
+    {
+        return NULL;
+    }
+
+    for (i = 0; i < (hay_len - needle_len + 1); i++)
+    {
+        if (haystack[i] == needle[0])
+        {
+            int k = i;
+            k++;
+
+            for (int j = 1; j < needle_len; j++)
+            {
+                if (haystack[k] != needle[j])
+                {
+                    break;
+                }
+                else
+                {
+                    k++;
+                    if (j + 1 == needle_len)
+                    {
+                        return &haystack[i];
+                    }
+                }
+            }
+        }
+    }
+
+    return NULL;
+}
 
 #ifndef TESTING
 int main(void)
@@ -61,14 +105,18 @@ int main(void)
     printf("%s", toCopy);
     printf("\n");
 
-    // char *hello[] = 'hello';
-    // char *world[] = 'world';
+    char *hello = "hello";
+    char *world = "world";
 
-    // char *found_char = find_char(hello, 'e');
-    // char *found_string = find_string(world, "or");
+    char *found_char = find_char(hello, 'e');
+    char *found_string = find_string(world, "or");
 
-    // printf("Found char: %s\n", found_char);
-    // printf("Found string: %s\n", found_string);
+    char *str = "LambdaSchool";
+    char *found = find_string(str, "School");
+    printf("Found string: %s\n", found);
+
+    printf("Found char: %s\n", found_char);
+    printf("Found string: %s\n", found_string);
 
     return 0;
 }
