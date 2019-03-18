@@ -9,7 +9,16 @@
 */
 int string_length(char s[])
 {
+    int i;
+    int counter = 0;
 
+    // white space is truthy
+    for (i = 0; s[i]; i = i + 1)
+    {
+        counter = counter + 1;
+    }
+
+    return counter;
 }
 
 /*
@@ -20,7 +29,19 @@ int string_length(char s[])
 */
 char *reverse_string(char rv[], char s[])
 {
+    int length = string_length(s);
+    int i;
+    int j = 0;
 
+    for (i = length; i > 0; i = i - 1)
+    {
+        rv[j] = s[i - 1];
+        j = j + 1;
+    }
+
+    rv[j] = '\0';
+
+    return rv;
 }
 
 #ifndef TESTING
@@ -37,4 +58,3 @@ int main(void)
     return 0;
 }
 #endif
-    

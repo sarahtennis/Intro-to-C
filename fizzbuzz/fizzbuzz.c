@@ -15,22 +15,24 @@ int fizzbuzz(int n)
 
     for (i = 1; i < n + 1; i = i + 1)
     {
+        // if divisible by 3, print "Fizz"
         if (i % 3 == 0)
         {
             printf("%s", "Fizz");
-            // counter = counter + 1;
         };
 
+        // if divisible by 5, print "Buzz"
         if (i % 5 == 0)
         {
             printf("%s", "Buzz");
-            // counter = counter + 1;
         };
 
+        // if divisible by neither 3 nor 5, increment counter
         if (i % 3 && i % 5)
         {
             counter = counter + 1;
         }
+        // start new print row otherwise
         else
         {
             printf("\n");
