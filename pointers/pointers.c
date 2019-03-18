@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 /*
     Given an empty (NULL) character pointer x and a character pointer y,
@@ -8,7 +9,14 @@
 */
 void string_copy(char *x, char *y)
 {
+    int i;
 
+    for (i = 0; y[i]; i++)
+    {
+        x[i] = y[i];
+    }
+
+    x[i] = '\0';
 }
 
 /*
@@ -19,10 +27,10 @@ void string_copy(char *x, char *y)
 
     Do not use the `strchr` function from the standard library.
 */
-char *find_char(char *str, int c)
-{
-
-}
+// char *find_char(char *str, int c)
+// {
+//     return 0;
+// }
 
 /*
     Searches the input string `haystack` for the first instance of
@@ -32,19 +40,35 @@ char *find_char(char *str, int c)
 
     Do not use the `strstr` function from the standard library.
 */
-char *find_string(char *haystack, char *needle)
-{
-
-}
+// char *find_string(char *haystack, char *needle)
+// {
+//     return 0;
+// }
 
 #ifndef TESTING
 int main(void)
 {
-    char *found_char = find_char(hello, 'e');
-    char *found_string = find_string(world, "or");
+    // tests string_copy() function
+    char toCopy[] = "replace";
+    char string[] = "string";
+    printf("%s", string);
+    printf("\n");
+    printf("%s", toCopy);
+    printf("\n");
+    string_copy(toCopy, string);
+    printf("%s", string);
+    printf("\n");
+    printf("%s", toCopy);
+    printf("\n");
 
-    printf("Found char: %s\n", found_char);
-    printf("Found string: %s\n", found_string);
+    // char *hello[] = 'hello';
+    // char *world[] = 'world';
+
+    // char *found_char = find_char(hello, 'e');
+    // char *found_string = find_string(world, "or");
+
+    // printf("Found char: %s\n", found_char);
+    // printf("Found string: %s\n", found_string);
 
     return 0;
 }
