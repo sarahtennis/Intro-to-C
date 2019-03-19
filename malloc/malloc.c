@@ -78,10 +78,10 @@ void *resize_memory(void *ptr, int old_size, int new_size)
 
     new[x] = '\0';
 
-    ptr = temp;
+    free(ptr);
 
     // return null pointer
-    return ptr;
+    return new;
 }
 
 #ifndef TESTING
