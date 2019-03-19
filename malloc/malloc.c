@@ -67,6 +67,21 @@ void mem_copy(void *dest, const void *src, int n)
 */
 void *resize_memory(void *ptr, int old_size, int new_size)
 {
+    char *temp = ptr;
+    char *new = malloc(sizeof(char) * new_size);
+    int x;
+
+    for (x = 0; x < new_size; x++)
+    {
+        new[x] = temp[x];
+    }
+
+    new[x] = '\0';
+
+    ptr = temp;
+
+    // return null pointer
+    return ptr;
 }
 
 #ifndef TESTING
@@ -92,22 +107,23 @@ int main(void)
 
     printf("\n");
 
-    // char *url = string_dup("http://lambdaschool.com");
-    // char *path = string_dup("/students/");
-    // int url_length = string_length(url);
-    // int path_length = string_length(path);
+    char *url = string_dup("http://lambdaschool.com");
+    char *path = string_dup("/students/");
+    int url_length = string_length(url);
+    int path_length = string_length(path);
 
-    // int new_length = url_length - 1 + path_length;
-    // char *new_url = resize_memory(url, url_length, new_length);
-    // char *p = new_url + url_length;
+    int new_length = url_length - 1 + path_length;
+    char *new_url = resize_memory(url, url_length, new_length);
+    char *p = new_url + url_length;
 
-    // while (*path != '\0') {
-    //     *p = *path;
-    //     p++;
-    //     path++;
-    // }
+    while (*path != '\0')
+    {
+        *p = *path;
+        p++;
+        path++;
+    }
 
-    // printf("Full path string: %s\n", new_url);
+    printf("Full path string: %s\n", new_url);
 
     return 0;
 }
