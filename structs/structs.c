@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../malloc/malloc.h"
 #include "lib.h"
 
 /* 
@@ -7,8 +8,12 @@
     Person type. Don't forget to specify the type of each field. A 
     Person should have the fields `name`, `age`, `height`, and `weight`.
 */
-typedef struct Person {
-
+typedef struct Person
+{
+    int age;
+    int height;
+    int weight;
+    char *name;
 } Person;
 
 /*
@@ -21,7 +26,20 @@ typedef struct Person {
 */
 Person *createPerson(char *name, int age, int height, int weight)
 {
+    // allocate memory to hold instance of Person struct
+    Person *ptr = malloc(sizeof(Person));
 
+    // set struct's fields with input data
+    // Hint: use string_dup()
+    ptr->name = string_dup(name);
+    ptr->age = age;
+    ptr->height = height;
+    ptr->weight = weight;
+
+    // *ptr = newPerson;
+
+    // returns Person pointer
+    return ptr;
 }
 
 /*
@@ -30,7 +48,9 @@ Person *createPerson(char *name, int age, int height, int weight)
 */
 void destroyPerson(Person *who)
 {
-
+    free(who->name);
+    free(who);
+    printf("%s", "Destroyed!\n");
 }
 
 #ifndef TESTING
